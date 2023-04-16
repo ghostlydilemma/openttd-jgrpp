@@ -1,6 +1,6 @@
-![Docker Image CI](https://github.com/ghostlydilemma/openttd/workflows/Docker%20Image%20CI/badge.svg?branch=main)
+![Docker Image CI](https://github.com/ghostlydilemma/openttd-jgrpp/workflows/Docker%20Image%20CI/badge.svg?branch=main)
 
-> This is a Github Container "Port" for https://github.com/bateau84/openttd. Parts of this readme have only been altered slighty, things may be broken. The Kubernetes section below has been adapted but remains untested.
+> This is a Github Container Port for [OpenTTD with JGRennison's patches](https://github.com/JGRennison/OpenTTD-patches) based on https://github.com/bateau84/openttd. Parts of this readme have only been altered slighty, things may be broken. The Kubernetes section below has been adapted but remains untested.
 
 ## Usage
 
@@ -34,29 +34,29 @@ If your openttd config is set up to listen on port 3979 you need to map the cont
 
 Run Openttd and expose the default ports.
 
-    docker run -d -p 3979:3979/tcp -p 3979:3979/udp ghcr.io/ghostlydilemma/openttd:latest
+    docker run -d -p 3979:3979/tcp -p 3979:3979/udp ghcr.io/ghostlydilemma/openttd-jgrpp:latest
 
 Run Openttd with random port assignment.
 
-    docker run -d -P ghcr.io/ghostlydilemma/openttd:latest
+    docker run -d -P ghcr.io/ghostlydilemma/openttd-jgrpp:latest
 
 Its set up to not load any games by default (new game) and it can be run without mounting a .openttd folder.  
 However, if you want to save/load your games, mounting a .openttd folder is required.
 
-    docker run -v /path/to/your/.openttd:/home/openttd/.local/share/openttd/ -p 3979:3979/tcp -p 3979:3979/udp ghcr.io/ghostlydilemma/openttd:latest
+    docker run -v /path/to/your/.openttd:/home/openttd/.local/share/openttd/ -p 3979:3979/tcp -p 3979:3979/udp ghcr.io/ghostlydilemma/openttd-jgrpp:latest
 
 Set UID and GID of user in container to be the same as your user outside with seting env PUID and PGID.
 For example
 
-    docker run -e PUID=1000 -e PGID=1000 -v /path/to/your/.openttd:/home/openttd/.local/share/openttd/ -p 3979:3979/tcp -p 3979:3979/udp ghcr.io/ghostlydilemma/openttd:latest
+    docker run -e PUID=1000 -e PGID=1000 -v /path/to/your/.openttd:/home/openttd/.local/share/openttd/ -p 3979:3979/tcp -p 3979:3979/udp ghcr.io/ghostlydilemma/openttd-jgrpp:latest
 
 For other save games use (/home/openttd/.openttd/save/ is appended to savename when passed to openttd command)
 
-    docker run -e "loadgame=true" -e "savename=game.sav" -v /path/to/your/.openttd:/home/openttd/.local/share/openttd/ -p 3979:3979/tcp -p 3979:3979/udp ghcr.io/ghostlydilemma/openttd:latest
+    docker run -e "loadgame=true" -e "savename=game.sav" -v /path/to/your/.openttd:/home/openttd/.local/share/openttd/ -p 3979:3979/tcp -p 3979:3979/udp ghcr.io/ghostlydilemma/openttd-jgrpp:latest
 
 For example to run server and load my savename game.sav:
 
-    docker run -d -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.local/share/openttd/ -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savename=game.sav" ghcr.io/ghostlydilemma/openttd:latest
+    docker run -d -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.local/share/openttd/ -e PUID=<your_userid> -e PGID=<your_groupid> -e "loadgame=true" -e "savename=game.sav" ghcr.io/ghostlydilemma/openttd-jgrpp:latest
 
 ## Docker Compose
 
@@ -66,7 +66,7 @@ The preferred way is to use this image with Docker Compose. Following is an exam
 version: "3"
 services:
   openttd:
-    image: ghcr.io/ghostlydilemma/openttd:13.1
+    image: ghcr.io/ghostlydilemma/openttd-jgrpp:13.1
     ports:
       - "3979:3979/tcp"
       - "3979:3979/udp"
@@ -98,4 +98,4 @@ and it will apply configmap with openttd.cfg, deployment and service listening o
 
 ## Other tags
 
-- See [ghostlydilemma/openttd](https://github.com/ghostlydilemma/openttd/pkgs/container/openttd/versions) on Github Packages for other tags
+- See [ghostlydilemma/openttd-jgrpp](https://github.com/ghostlydilemma/openttd-jgrpp/pkgs/container/openttd/versions) on Github Packages for other tags

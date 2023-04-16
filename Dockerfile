@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-ARG OPENTTD_VERSION="13.1"
+ARG PATCH_VERSION="0.53.0"
 ARG OPENGFX_VERSION="7.1"
 
 ADD prepare.sh /tmp/prepare.sh

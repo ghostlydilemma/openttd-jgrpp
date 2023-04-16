@@ -21,10 +21,10 @@ $minimal_apt_get_install dumb-init wget unzip xz-utils ca-certificates libfontco
 mkdir -p /usr/share/games/openttd
 cd /usr/share/games/openttd
 
-wget -q https://cdn.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-generic-amd64.tar.xz
-tar -xf openttd-${OPENTTD_VERSION}-linux-generic-amd64.tar.xz
-mv /usr/share/games/openttd/openttd-${OPENTTD_VERSION}-linux-generic-amd64/* /usr/share/games/openttd/
-rm -f openttd-${OPENTTD_VERSION}-linux-generic-amd64.tar.xz
+wget -q https://github.com/JGRennison/OpenTTD-patches/releases/download/jgrpp-${PATCH_VERSION}/openttd-jgrpp-${PATCH_VERSION}-linux-generic-amd64.tar.xz
+tar -xf openttd-jgrpp-${PATCH_VERSION}-linux-generic-amd64.tar.xz
+mv /usr/share/games/openttd/openttd-jgrpp-${PATCH_VERSION}-linux-generic-amd64/* /usr/share/games/openttd/
+rm -f openttd-jgrpp-${PATCH_VERSION}-linux-generic-amd64.tar.xz
 
 
 ## Download GFX and install

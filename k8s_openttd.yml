@@ -33,7 +33,7 @@ spec:
                   name: openttd-user-config
                   key: UID
       containers:
-        - image: ghcr.io/ghostlydilemma/openttd:latest
+        - image: ghcr.io/ghostlydilemma/openttd-jgrpp:latest
           imagePullPolicy: Always
           name: openttd
           securityContext:
