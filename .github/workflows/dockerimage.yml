@@ -46,17 +46,33 @@ jobs:
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+      - name: Build without push ${{ matrix.version }} with latest tag
+        if: ${{ github.ref_name != 'main' && needs.get_versions.outputs.latest == matrix.version }}
+        uses: docker/build-push-action@v3
+        with:
+          push: false
+          pull: true
+          build-args: OPENTTD_VERSION=${{ matrix.version }}
+      - name: Build without push ${{ matrix.version }}
+        if: ${{ github.ref_name != 'main' && needs.get_versions.outputs.latest != matrix.version }}
+        uses: docker/build-push-action@v3
+        with:
+          push: false
+          pull: true
+          build-args: OPENTTD_VERSION=${{ matrix.version }}
       - name: Login to GCR
         uses: docker/login-action@v2
+        if: ${{ github.ref_name == 'main' }}
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Output platforms
+        if: ${{ github.ref_name == 'main' }}
         run: |
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
       - name: Build and push ${{ matrix.version }} with latest tag
-        if: needs.get_versions.outputs.latest == matrix.version
+        if: ${{ github.ref_name == 'main' && needs.get_versions.outputs.latest == matrix.version }}
         uses: docker/build-push-action@v3
         with:
           push: true
@@ -66,7 +82,7 @@ jobs:
             ghcr.io/${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:${{ matrix.version }}
       - name: Build and push ${{ matrix.version }}
-        if: needs.get_versions.outputs.latest != matrix.version
+        if: ${{ github.ref_name == 'main' && needs.get_versions.outputs.latest != matrix.version }}
         uses: docker/build-push-action@v3
         with:
           push: true
@@ -75,6 +91,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}:${{ matrix.version }}
       # Trivy test
       - name: Run Trivy vulnerability scanner
+        if: ${{ github.ref_name == 'main' }}
         uses: aquasecurity/trivy-action@master
         id: trivy
         with:
@@ -86,5 +103,6 @@ jobs:
           severity: 'CRITICAL,HIGH'
           output: results.json
       - name: test outputs
+        if: ${{ github.ref_name == 'main' }}
         run: |
           cat results.json
