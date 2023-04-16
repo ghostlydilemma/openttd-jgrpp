@@ -1,7 +1,7 @@
 version: '3'
 services:
     openttd:
-        image: ghcr.io/ghostlydilemma/openttd:13.0
+        image: ghcr.io/ghostlydilemma/openttd:13.1
         ports:
             - "3979:3979/tcp"
             - "3979:3979/udp"
