@@ -33,7 +33,7 @@ spec:
                   name: openttd-user-config
                   key: UID
       containers:
-        - image: bateau/openttd:latest
+        - image: ghcr.io/ghostlydilemma/openttd:latest
           imagePullPolicy: Always
           name: openttd
           securityContext:
@@ -72,11 +72,11 @@ spec:
                   key: GID
           volumeMounts:
           - name: openttd-config
-            mountPath: /home/openttd/.openttd
+            mountPath: /home/openttd/.local/share/openttd/
       volumes:
       - name: openttd-config
         hostPath:
-          path: /home/user/.openttd
+          path: /home/user/.local/share/openttd/
 
 ---
 apiVersion: v1

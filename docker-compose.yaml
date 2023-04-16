@@ -1,0 +1,18 @@
+version: '3'
+services:
+    openttd:
+        image: ghcr.io/ghostlydilemma/openttd:13.0
+        ports:
+            - "3979:3979/tcp"
+            - "3979:3979/udp"
+        volumes:
+            - ./config:/home/openttd/.local/share/openttd/
+        restart: always
+        environment:
+            PUID: "1003"
+            PGID: "1004"
+            loadgame: last-autosave
+
+    console:
+            image: golang
+            command: sleep infinity
