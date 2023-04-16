@@ -1,6 +1,6 @@
 ![Docker Image CI](https://github.com/ghostlydilemma/openttd/workflows/Docker%20Image%20CI/badge.svg?branch=main)
 
-> This is Github Container "Port" for https://github.com/bateau84/openttd. Parts of this readme have only been altered slighty, things may be broken. The Kubernetes section below has been adapted but remains untested.
+> This is a Github Container "Port" for https://github.com/bateau84/openttd. Parts of this readme have only been altered slighty, things may be broken. The Kubernetes section below has been adapted but remains untested.
 
 ## Usage
 
@@ -66,7 +66,7 @@ The preferred way is to use this image with Docker Compose. Following is an exam
 version: "3"
 services:
   openttd:
-    image: ghcr.io/ghostlydilemma/openttd:13.0
+    image: ghcr.io/ghostlydilemma/openttd:13.1
     ports:
       - "3979:3979/tcp"
       - "3979:3979/udp"
