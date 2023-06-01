@@ -88,7 +88,7 @@ You can also find a docker-compose file in this repo which contains the same con
 If you are trying to host a container on Windows, and your OpenTTD config filepath contains spaces, you can reference it like below:
 
 ```
-"//c/Users/username/directory with space/Openttd:/home/openttd/.local/share/openttd/"
+"//c/Users/username/directory with space/OpenTTD:/home/openttd/.local/share/openttd/"
 ```
 
 Your savegame filename must not contain any spaces.
