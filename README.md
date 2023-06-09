@@ -85,6 +85,14 @@ services:
 
 You can also find a docker-compose file in this repo which contains the same config
 
+If you are trying to host a container on Windows, and your OpenTTD config filepath contains spaces, you can reference it like below:
+
+```
+"//c/Users/username/directory with space/OpenTTD:/home/openttd/.local/share/openttd/"
+```
+
+Your savegame filename must not contain any spaces.
+
 ## Kubernetes (untested)
 
 > The following Kubernetes section has been taken from bateau84/openttd. As I don't use this approach this remains untested. It should be adapted to the changes added here but I can't say for certain
