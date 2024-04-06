@@ -30,6 +30,14 @@ To set a new value to an enviroment variable use docker's `-e ` parameter (see h
 By default docker does not expose the containers on your network. This must be done manually with `-p` parameter (see [here](https://docs.docker.com/engine/reference/commandline/run/) for more details on -p).
 If your openttd config is set up to listen on port 3979 you need to map the container port to your machines network like so `-p 3979:3979` where the first reference is the host machines port and the second the container port.
 
+### Management
+
+This image includes [openttd-admin](https://github.com/sdassow/openttd-admin) to allow you to easily manage your OpenTTD
+server. In addition, a simple wrapper script, `rcon`, is included that allows you to connect directly to the OpenTTD
+rcon port. For example:
+
+    docker exec -it [container-name] rcon
+
 ### Examples
 
 Run Openttd and expose the default ports.
@@ -77,10 +85,6 @@ services:
       PUID: "1003"
       PGID: "1004"
       loadgame: last-autosave
-
-  console:
-    image: golang
-    command: sleep infinity
 ```
 
 You can also find a docker-compose file in this repo which contains the same config
