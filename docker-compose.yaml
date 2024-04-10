@@ -12,7 +12,3 @@ services:
             PUID: "1003"
             PGID: "1004"
             loadgame: last-autosave
-
-    console:
-            image: golang
-            command: sleep infinity
