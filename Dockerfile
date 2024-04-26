@@ -1,7 +1,7 @@
 FROM golang:1.22 AS openttd-admin
 RUN go install github.com/sdassow/openttd-admin@d16c9d5
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ARG PATCH_VERSION="0.53.0"
 ARG OPENGFX_VERSION="7.1"
