@@ -24,6 +24,8 @@ VOLUME /home/openttd/.local/share/openttd/
 EXPOSE 3979/tcp
 EXPOSE 3979/udp
 
+EXPOSE 3977/tcp
+
 STOPSIGNAL 3
 ENTRYPOINT [ "/usr/bin/dumb-init", "--rewrite", "15:3", "--rewrite", "9:3", "--" ]
 CMD [ "/openttd.sh" ]
