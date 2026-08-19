@@ -1,4 +1,4 @@
-FROM golang:1.25 AS openttd-admin
+FROM golang:1.27 AS openttd-admin
 RUN go install github.com/sdassow/openttd-admin@d16c9d5
 
 FROM ubuntu:24.04
